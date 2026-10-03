@@ -24,15 +24,12 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 .hidden{display:none!important}
 .preview-page{background:#fff;max-width:900px;margin:20px auto;padding:45px;box-shadow:0 2px 15px #0002}
 .cover{width:210mm;height:297mm;min-height:297mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(calc(2em + 15mm))}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(calc(2em + 15mm))}.cover-bottom{margin-top:auto;text-align:center;padding-top:20px;transform:translateY(calc(-2em - 15mm))}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:-17.8px;font-size:14pt;font-weight:400}
-.table-page{width:210mm;height:297mm;min-height:297mm;background:#fff;margin:20px auto;padding:0;box-sizing:border-box;page-break-after:always;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.table-page:last-child{page-break-after:auto}.word-table{width:19cm;height:138.5mm;border-collapse:collapse;margin:0;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt;flex:0 0 138.5mm}.word-table tr:nth-child(1){height:10mm!important}.word-table tr:nth-child(2){height:10mm!important}.word-table tr:nth-child(3){height:98.5mm!important}.word-table tr:nth-child(4){height:10mm!important}.word-table tr:nth-child(5){height:10mm!important}.word-table td{border:1px solid #333;padding:2px 4px;vertical-align:middle;font-family:"SimSun","宋体",serif;font-size:10.5pt;line-height:1.05;overflow:hidden}.label{font-weight:400;background:#fff;width:23.3%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-block{padding:0!important;vertical-align:middle!important}.photo-title{height:10mm;line-height:10mm;font-weight:400;text-align:center;padding:0 4px;background:#fff;font-family:"SimSun","宋体",serif;font-size:10.5pt;overflow:hidden}.photo-cell{height:98.5mm!important;max-height:98.5mm!important;text-align:center;padding:2px;overflow:hidden;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{display:block;margin:0 auto;max-width:100%;max-height:96mm;width:auto;height:auto;object-fit:contain}.word-table .value-cell{text-align:left}.export-area{background:#fff}.small{font-size:13px;color:#6b7280}@media(max-width:700px){.photo-grid{grid-template-columns:1fr}.preview-page{padding:20px}.cover{min-height:600px}.cover .project{font-size:27px}}@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.table-page{margin:0;width:210mm;height:297mm;min-height:297mm;padding:0;break-after:page;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.word-table{break-inside:avoid;width:19cm;height:138.5mm;margin:0;flex:0 0 138.5mm}.photo-cell{height:98.5mm!important;max-height:98.5mm!important}.photo-cell img{max-height:96mm!important}}
-</style>
-<!-- Include docx.js and FileSaver via CDN or embed JSZip / docx library for absolute stability on mobile browsers & GitHub Pages -->
-<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(calc(2em + 15mm))}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(calc(2em + 15mm))}.cover-bottom{margin-top:auto;text-align:center;padding-top:20px;transform:translateY(calc(-2em - 15mm))}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:-17.799999999999997px;font-size:14pt;font-weight:400}
+.table-page{width:210mm;height:297mm;min-height:297mm;background:#fff;margin:20px auto;padding:0;box-sizing:border-box;page-break-after:always;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.table-page:last-child{page-break-after:auto}.word-table{width:19cm;height:138.5mm;border-collapse:collapse;margin:0;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt;flex:0 0 138.5mm}.word-table tr:nth-child(1){height:10mm!important}.word-table tr:nth-child(2){height:10mm!important}.word-table tr:nth-child(3){height:98.5mm!important}.word-table tr:nth-child(4){height:10mm!important}.word-table tr:nth-child(5){height:10mm!important}.word-table td{border:1px solid #333;padding:2px 4px;vertical-align:middle;font-family:"SimSun","宋体",serif;font-size:10.5pt;line-height:1.05;overflow:hidden}.label{font-weight:400;background:#fff;width:23.3%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-block{padding:0!important;vertical-align:middle!important}.photo-title{height:10mm;line-height:10mm;font-weight:400;text-align:center;padding:0 4px;background:#fff;font-family:"SimSun","宋体",serif;font-size:10.5pt;overflow:hidden}.photo-cell{height:98.5mm!important;max-height:98.5mm!important;text-align:center;padding:2px;overflow:hidden;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{display:block;margin:0 auto;max-width:100%;max-height:96mm;width:auto;height:auto;object-fit:contain}.word-table .value-cell{text-align:left}.export-area{background:#fff}.small{font-size:13px;color:#6b7280}@media(max-width:700px){.photo-grid{grid-template-columns:1fr}.preview-page{padding:20px}.cover{min-height:600px}.cover .project{font-size:27px}}@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.table-page{margin:0;width:210mm;height:297mm;min-height:297mm;padding:0;break-after:page;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.word-table{break-inside:avoid;width:19cm;height:138.5mm;margin:0;flex:0 0 138.5mm}.photo-cell{height:98.5mm!important;max-height:98.5mm!important}.photo-cell img{max-height:96mm!important}}</style>
+
 </head>
 <body>
-<header>消防查验图片资料 · 网页增强版</header>
+<header>消防查验图片资料 · Windows 测试版</header>
 <main>
 <section id="editor">
 <div class="card">
@@ -58,10 +55,9 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 <p>文档按 A4 页面生成：封面 1 页，后续每页固定放 2 个查验表格；两表格间距 1.5 cm；单表格时固定使用第1个表格的位置。照片只在固定单元格内等比例缩放。</p>
 <div class="actions">
 <button class="secondary" onclick="backToEdit()">← 返回修改</button>
-<button class="primary" onclick="handleGenerateDocx(this)">生成 Word（DOCX）</button>
+<button class="primary" onclick="generateDocx()">生成 Word（DOCX）</button>
 <button class="primary" onclick="generatePdf()">生成 PDF</button>
 </div>
-<div id="statusMsg" style="margin-top:10px;font-weight:600;color:#1677ff;"></div>
 </div>
 <div id="previewContent"></div>
 </section>
@@ -129,7 +125,7 @@ function formatDate(date){
 function buildPreview(){
   const name=esc($("projectName").value.trim()), date=esc($("projectDate").value||"");
   let html=`<div class="preview-page cover">
-    <img class="cover-logo" src="data:image/jpeg;base64,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" alt="安仕达消防Logo">
+    <img class="cover-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEA3ADcAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACJAK8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiimSzRQoXlkSNB1Z2AFAJX2H0VgXnjXw5Y5E2rW5I7Rnf8AyzWaPih4WY/Jdyv/ALsLGkmpfDqayoVIq8o2Xnp+djsaK4//AIWb4aHWe5H1t2p8HxK8LTvsGo7G/wBuNh/SnK8d1b5P/IUKU5/Ar+jT/Js62is+y1zStQx9k1C2mJ/hWQZ/LrWhSTT2JlCUHaSsFFFFMkKKKKACiiigAooooAKKKKACiiigArL1nxBpug2/m39wqE/djHLt9BWB408cxaBG1nZlZL8jnPKxD1PqfQV5i2n6hq07X2pvJJJId22Q8/j/AIdqdGnOvPkp9N30X+b8jWv7LB0FiMVez+GK+KX+S838jo9W+KGqagzRaLbLbQ9POk+Zv8PyB+tcldPfalL5uo6hcXD+hc4rRfTnijZ2GFUZPHQCtyDwVPLbxyS3yxyMoLJ5Gdpx0zu5r11h8HhknU9593r+GyPm5ZnmmOclhUqUV0Wj+cn7z+9HHLaW6HIhXPqRk/rUoUDoMfSti70Sazv5bVnEhQKyuF27lI64ye4I/Cq8liYgDI6ID03HGa9OnVpuKcdj52vRxPtXGqm5fNlDFMaKNxh41b6jNaBs2A3EMq/3mQhfzxinrp0khi2MuJJEQP1A3MBn3603Wha9yY4bEcyjytN/IxjYw9UDRn1jYj9Ola+neJvEeiFfst+1xCv/ACxn+YY/H+mK3v8AhB7n/oIw/wDfg/8AxVNbwRdgErfQMfQxFf1ya8yrPAVviWvdJp/ej6LDPO8MrRlePaTUl9zv+DR0OgfFCwv3W31SI2Nx03H7h+vcfqPeu8jkSWNZI3V0YZDKcgivCtS8NXNvgXkIC5wk8ZyoP16j8RVjQfE2q+D7tLe43T2Dn7h6Edyvo3t0NeZiKHsV7SEuaH4r1PosDXjjpexlD2Vb+X7Mv8L6Pybfkz2+iqmm6la6tYx3lnKJIZBwe4PofQ1brBNNXQSi4txkrNBRRRTEFFFFABRRRQAVgeLvEK+HtEedSDcyfJAp/vev0HWt+vG/iZqTXfib7IG/d2kYUD/aPJP8vyrDEVOSF1uejlWFWJxKjLZav5Gf4X0mXXdVnv7otIkDbiW53ynnJ+nX8RXcf2V/s0nw2tFk8LM+0ZNy+T68Cuw+wj0rsw1RUqUYxODOISxOMnKfR2XklocRPpga6tbYr/rJNzj/AGF5P5naP+BVfv72S11C0hRQY2bM5/uqTtX82I/AGtGCETard3AGUixbxn6cuR+JA/4BTLbTV1S01CZ2A+1FoY27qiZUH/vrcw+oq5z55XlsjnpUlShaJj69aSfabOaBA0srG356DI3Bj6hcH8zUqWVppEIkETSzuQofAaSRj2Hp9OAParM8plstN1GRdqRSbpx/zzJVkOfox59Bk1burR5hDLCyiWF/Mj3DKk4KkH6hj9OtRzuyi3oaezim5Jama17cQjzLqxMcHd1kDFB6sPT6Zqnq+lRo8F3bqsbfaYfNUDAcGRecf3unPp+GNySdngeG90qYxupVzA4kXBGD3DfkKpXNlp8lgJbW9uZHiuLfdFJM+VzKg+ZG5H4iqVk7x0Ek3pNDtYEqWI8mRo3eaJNy9QGdQf0NVhp98h3R6hcbvSQKyn6jH8iK19UhzBbg97u3H/kVa2PsK+lKnOMY6omrGTacXY5y1YX9rLFcwqHUmKePqucfyIIP41gT+Hkv7W706QndC+2OQ8kDAKN+Gce+DXWrbiLXb1F6GGFz9SXH8gKWztg+vXox/wAu0B/8el/wpwnyNpbMJwckn1WqPM/BXiKbw5rbWd2xW2kkMVwh6I4ONw/H9K9tByMivBfG0KweNNUjRQAHQ4HqY0J/U1614L1JtU8KWU0hzIimJye5Xj+WK86jJRqSprbofR5pR9ph6WMtrJLm9bb/AIHQUUUV1HghRRRQAUUUUAFeDeNv+Ry1P/rqP/QRXvNeF+Prd7bxrfK/SUJMnupGP5hh+FcmMTdO57nD9RRxTi+q/wCCdd8KdVR7O90lyBJE/nxj+8jAA/kR+orvb+6FlYTXJXcY0JVR1Zuw/E4H41896ZqVzpGpwahaMBNC2QD0Yd1PsRXsdr4gh8T2NlcWEEkyRzB7u2RkEkbKCVBDMON2DnvtrXDVFUil1RGc4KVCu6iXuy1+fVGlDHHpOlx/aXJK4EjqpJeRjyQBySWP61QMehMSTpDEnkk6VJz/AOOVokXGoX9r5ljNb28DGVjKyHe+MKAFY+pP1ArWrovY8e5zyappVuVsooZ0OwsIEsZR8ueTt29MmqOl25e/u7axurm2UESwRXFs3l7CACArBSMNngEDDDitrVFFteWupFcxxB4piB92NsHd9AVXPoCT2p9zaySyQXtlJH50akKW5SRGxkEj1wCCOmO/SndfeMpTPe2CGS9t42t15ee3cnaP7zIRkD6Fqh1qzhkt7ecoDJHcwbHHBAMqZGfT2q9PHqt/A9tNHa2sUilJHjlaVip4IAKqAffn6VDrLosENlbxtNcebDIIYsFgiSKxY88DCnr1PFC3VhC60Ugs4ZZXVI0u7cszHAA81eSattr2lAfJf28rdkhcSO30Vck0n9okjnTb7/v2P8aT+0H/AOWelXzN6bUX9SwpW0swGWMErvcXdxGY5bh9wjJyUQABVPvxk+5NJpbIzX2pMwWF22o5OB5aDGfpuLnPpinNb32ojZcBbO1P3o0fdK49Cw4UeuMn3FcD498YQSW7eH9IZfJA2XMsf3cD/lmuP1/L1xM5KCcpG+Hw9TEVFTprV/gcTrmpnWdevtR/hnlJT/cACr/46BXqvwv/AORTf/r5f+S143XtPw0t3h8GQSuMfaJXlUf7OdoP4hc/jXn4dudZzPpc6UKGChQXdfgjr6KKK9A+SCiiigAooooAK89+Kvh+W80qLXLOMvcaeD50ajJkgP3se6n5vpn1r0KkIDAggEHgg0pRUlZl06kqc1ODs0fM0ciSxrJGwZGGQR3FW9P1G80q9S8sLh4J143L0YehHQj2re8d+Bbnwvczaxo1u0+iyMXuLWMZa1J6so7p7dvpXJ29xDdQiWCRXQ9CK8qdOdCV1959zg8bQzClyTSv1T/Ty/I9b0L4o2dwqQ61D9km6GeMFom+vdf1HvXd2t5bX0CzWlxFPE3R4nDA/iK+bq7LTPCXkNHMusXWmzrB51yVgkj8rrj5hgHtnNdVLF82kl9x4+PyWjS96nO1+ju/y1/A9m61nHRbVWLW7TWpJyRbylVz/u/d/SvK5/E3jHw8IPP1KG5hmUtC7hJVcA4zlcH86tW3xX1WNcXOn2kx9UZo/wDGt1iKa+1Y8/8AsfF2vCKkvJr/AIB6V/ZAbia+v5V9PPKf+gYNWrWytrJCltCkYY5YgcsfUnqT7muAh+IWuXLWiQ+Hot14GNuTc4D7c5xkexrAuvif4hmJEK2Vuv8AsxFmH4k4/Sm8RTtrL+vuJhlOLm7KP4r/ADPZaxNZ8W6LoSkXl6hmHSCL55D/AMBHT8cV45L4i1zV7qKK91S8ljkcKYoXEQIJ6DaAPzrqNO8OaNaNq1jdq2GiW6Tz1VPLQH5cyrn72cHA7etZ/WYP4NfwN3lEqNniJW8lq90vTqZniT4hajraPa2atYWTcMFb97IPcjoPYfnXHgADAGBWpremyWF6W2QCCX5ozbSGSMD0DHr/ADrGja6v9Rj0vSbZrzUZThYk6IP7znsBXDOVStKzPpKKweBoe0jou/V/12Lmm6dca9rVtotnkTXBzJIP+WMQ+85/Dge5FfRlpaw2VnBaW6BIYY1jRR2UDAFcz4F8FQeEdNcyuLnVLnDXVzjqeyr6KO1dZXo0aSpxsfIZhjZYytzvRLZeQUUUVqcIUUUUAFFFFABRRRQAEAggjIPavMfFnwitb+4l1Lw1cLpeoP8AM8OP3Ep91H3T7j8q9OopNJqzKjKUXzRdmfMWoQ6t4auVh8S6TcWqBsG5hXfE49mHFej6D448LjT7XT01K6ngR/4oVAKntKNzZH0FepyxRzxNFNGkkbDDI65BHuDXE6x8IvB2sM0n9m/Ypjz5lm/l8/7v3f0rH6vFO8ND0HmdWpFQr+8l8n99jznxLdSTakYXWwCw5CGx/wBWQeeP8isdcbhuBIzziu0u/gbcREnSvFV1GvZLqLePzBH8qzH+EXjeM4i1jSJV9ZA6n9ENcssHNu6Z7VDP8PCChKDVvT/M7K1nNxqvh2aw0dDaC3QGRlLNbpuZeoIAyBk8etcL4khvIr4C6s7a1HzCNYEVQyg9Tj+tW3+FvxCkREk1jR2VBtQGSUhR6D5OKkg+DPim4b/TfEtnAvcW8JY/qFq5YeclZ/1+By0c1w9CfNFN9NvNvdy8+xypIUZJAA7mty5+JVjbWFvplrZR3rJAkO1w0rSFSTgqp2kAngGupsfgXoqsr6tquo6iw6qX8tD+Ayf1rutE8I+H/Dqj+ytJtrZ8Y8xUy5+rHn9aunheXdmWMzt17KMErd3f8rHk1n4U8c+PZIpNWdtF0tfuB1Ak2+iRjAX8cfjXq3hfwho/hGw+zaXbbWbmWd/mklPqzf06Vu0V0xio7HjVK06rvN3/AK7BRRRVGYUUUUAFFFFABRRRQBh+JvFVj4VtrWe+hu5hdTi3iS1i8xi5BIGMjrg9K5DxP8Q9Sl0KYeHND8QQ6mCpjM+ksUIzyD1xxmt3xmwa70sP4Y1HWPs0wu4ntJAghlU/LnLDPU8VxWteK9Z8VeJrKxtPDmtRW2jzifUILeVFlZyv7tSwbAHXIznmgDqG+KFla2H2m+0DxFAqRhpnbTmCJxzyT0967PT72LUtNtb6EMIrmFJkDjDBWAIyPXmvPb3xw2vnUfDlx4J1mdxEou7dZIwVR+mSG4yPet2TUdVsfh5HNovh+4jvoolt7bT52BeMA+WpY55AGG69O9AEVrr2qap8UL3S7GaMaNplqgvAYwxadskKG7cdf908U7Wdc1G0+JvhvR4LgLYX0Fw08ewEsUUkc4yPwrifAXhbULuPxLplxr9/aXtvqqvcXdlJseV/LO4EnqCWz+AputeD7qD4neGdPbxVrkr3MFyy3Tzgyw7UJwhxwD0NAHtFcvqniqfR/G2maReWarpupIUgvFYkicc7GGOAR0+v1p+geFLnRNSe7m8S6xqStEY/JvZg6A5B3AADnjH41iza74ssPGej6Zq9ropsdSuZkhe3EhlRFUkZycAkYHGe9AGh4/8AEp0jwLqeoaTqMC3sKoYmVkc5LqDwcg8E10FlqNtLa2wa+gkmdFB/eLlmI9B3zXmHxH8G+FdO0S207StGtYtZ1S6jt7UoCXHzAu3XoBkE+9b3hLRfAGqXL3ejaPDDfaZclHWSNo5YpFPBKk9DjIz/ADBFAHWeIb3U9P0Se60jT11C8jAZbdpNm8Z5wcdcZwKxLfx7BPL4eMmmXlva60GSOaZdvlTDpGy9ecHB6H+U/jXSdQvbCPUNM1+XSLnTw8wdiPIcY5Eo7jA69ueDXI+LtdvoPF+h2h8SXFlZXOmmaSbTrbzleQE4ZV2scHP5d6AL+mePriy0HX9Q1VmvZ7fW5tOsLWNVV5SNuxBgcn5jzzwK7u4u5odGlvDB5cyW7S+S5ztYLnaSPfjivC9XuIPDPhzUrrQvF2tPdPcfazFPphRHmZlDOWaPCnHuOle13LM/hKZnYszWLEsepPl9aAPPf+FmeI4bfQ7u80vSYrXVlMqMtxIzxwqu55GXb0VcnrVjxb8VtMtrWxuPDmuWNzKt0gubZwQZIT97DEDafesjwmv9k6t4J1TUAJrLUdIXTrVj0tpvvYI77xkZrTuH1f8A4XBrUug6XZ3rW2n28Ey3E3lKm47xjCnJoA7bRfGXh7xFdvaaTqkN1cJH5rIgPC5AzyMdSK3a5TwP4hn8SWupTXem29lcWV7JZMIX3himMnOBxk/pXV0AFFFFABRRRQBm6z4g0nw9bpPq19FaRO21Xkzgnrge9eRRX6w39w3wy1LW9Qurqcy3EUlsJLRnPUvJIFK/UE17Rd2NpfwiG8tYbmIMGCTRh1yOhwe9SxxxwxiOJFRBwFUYAoA8m0LWr34dz30njPSrhZNSufOn1m2PnQsTwqkAZQAcAc16vBPHc28c8LbopVDocEZBGRwaWSKOaNo5UWRG4KsMg/hT6APM/DGrJpGq+PL42l5diPV1Bhs4TLKcgDhR1qjq+v3N78QvDuvQ+GPEZtLCG4SYHTmD5dMLgd/zr1C102ysZ7ma1tIYZbl/MneNApkb1Y9zzVqgDF8P+Ixr/wBoxpGq6f5G3/kIWxh35z93nnGOfqK4nxVrcup+ONLfRdLv9RTw7NK1+9vGPkLpt2puxvYdcCvUKaqKpYqoBY5YgdT0yfyFAHknhjVPCdvr9xr+v+LftutZaOIahEbY2kfPyiMgANjqRx1x3zonV/Ax8f2/iGx8UQxXcsZtp7a2+cXZOAm7API/XA5459EuLCzvP+Pm0gn/AOusYb+dVo9A0aGVZYtJsEkQ7ldbZAQfUHHWgDm/idLeT+HINEsYpjLrF1HZNKiErEjH5ix6Djjn1NYXiDSp2+Kfh7TNH1J9KaDR5FjljhSQqitgLhhjoP0r1KqzafZvfpftaQNeRoY0nMY3qp7BuoHPSgDyD4o2mqaT4PuoNU8czXb3AXyrGSyhjNxh1zgqM8cHivUrobPCMwb5SLBs57fu6vXFhZ3ksMlzaQTSQHdE0kYYxn1UnofpU0kaSxtHIiujgqysMgg9QRQB41Z6fptj4O8L+KPEOuXI03T7WGW10xQAHuVHBHck8cfXnGa3/DF/B4V0e+8VeLpf7Pu9euvOKOjN5SBf3cZwDyFB6/0rv106ySzjs1s4BaxY8uERjYmDkYHQYPSpJ7aC6QJcQxzIGDBZEDAEdDz3oA4j4RxSnwdNfyxuh1G/nu13jBKs2Af0rvKAAAABgDtRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//2Q==" alt="安仕达消防Logo">
     <div class="project">${name}</div>
     <div class="title">消防查验阶段图片资料</div>
     <div class="cover-bottom">
@@ -160,353 +156,139 @@ function tableHtml(it,n){
  </table>`;
 }
 
-// Convert Base64/DataURL to Uint8Array safely
 function dataUrlToUint8Array(dataUrl){
-  const base64=(dataUrl.split(',')[1]||'').replace(/\s/g,'');
-  const bin=atob(base64);
-  const arr=new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
-  return arr;
+  const base64=(dataUrl.split(',')[1]||'').replace(/\s/g,''); const bin=atob(base64); const arr=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); return arr;
 }
+function cmToTwips(cm){return Math.round(cm/2.54*1440)}
+function mmToEmu(mm){return Math.round(mm/25.4*914400)}
+function escXml(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;')}
+function dataUrlMime(dataUrl){const m=(dataUrl||'').match(/^data:([^;,]+)/);return m?m[1]:'image/jpeg'}
+function imageExt(dataUrl){const m=dataUrlMime(dataUrl);return m.includes('png')?'png':'jpg'}
 
-// Image dimension calculation for Word
-async function getImageFit(dataUrl, maxW_mm, maxH_mm) {
-  return new Promise((resolve) => {
-    if (!dataUrl) { resolve(null); return; }
-    const im = new Image();
-    im.onload = () => {
-      const iw = im.naturalWidth || im.width || 100;
-      const ih = im.naturalHeight || im.height || 100;
-      // Convert mm to pixels at standard 96 dpi (1 mm = 3.7795275591 px)
-      const maxW_px = maxW_mm * 3.7795275591;
-      const maxH_px = maxH_mm * 3.7795275591;
-      const scale = Math.min(maxW_px / iw, maxH_px / ih);
-      resolve({
-        width: Math.round(iw * scale),
-        height: Math.round(ih * scale)
-      });
+// Minimal ZIP writer (stored entries, no external libraries required).
+const CRC_TABLE=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);t[n]=c>>>0;}return t;})();
+function crc32(bytes){let c=0xffffffff;for(let i=0;i<bytes.length;i++)c=CRC_TABLE[(c^bytes[i])&255]^(c>>>8);return (c^0xffffffff)>>>0}
+function u16(n){return new Uint8Array([n&255,(n>>>8)&255])}
+function u32(n){return new Uint8Array([n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255])}
+function concatBytes(parts){let total=0;for(const p of parts)total+=p.length;const out=new Uint8Array(total);let o=0;for(const p of parts){out.set(p,o);o+=p.length}return out}
+function utf8(s){return new TextEncoder().encode(s)}
+function makeZip(entries){
+  const local=[], central=[]; let offset=0;
+  for(const e of entries){
+    const name=utf8(e.name);
+    const data=e.data instanceof Uint8Array?e.data:utf8(e.data);
+    const crc=crc32(data);
+    const lh=concatBytes([
+      u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(0),u16(0),
+      u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data
+    ]);
+    local.push(lh);
+    const ch=concatBytes([
+      u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0),
+      u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),
+      u16(0),u16(0),u32(0),u32(offset),name
+    ]);
+    central.push(ch);
+    offset += lh.length;
+  }
+  const body=concatBytes(local), cd=concatBytes(central);
+  const end=concatBytes([
+    u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),
+    u32(cd.length),u32(body.length),u16(0)
+  ]);
+  return new Blob([body,cd,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+function xmlTextRun(text,size=21,bold=false){return `<w:r><w:rPr><w:rFonts w:ascii="SimSun" w:eastAsia="宋体"/><w:sz w:val="${size}"/>${bold?'<w:b/>':''}</w:rPr><w:t xml:space="preserve">${escXml(text||'')}</w:t></w:r>`}
+function xmlPara(text='',align='left',size=21,bold=false,spaceBefore=0,spaceAfter=0){return `<w:p><w:pPr><w:jc w:val="${align}"/><w:spacing w:before="${spaceBefore}" w:after="${spaceAfter}" w:line="240" w:lineRule="auto"/></w:pPr>${xmlTextRun(text,size,bold)}</w:p>`}
+let DRAWING_ID=20; function xmlImageRun(relId,cx,cy){const did=DRAWING_ID++;return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="${did}" name="photo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="0" name="photo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+function tc(text,w,align='center',rowSpan=1,colSpan=1,extra=''){return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${colSpan>1?`<w:gridSpan w:val="${colSpan}"/>`:''}<w:vAlign w:val="center"/>${extra}</w:tcPr>${xmlPara(text,align,21,false,0,0)}</w:tc>`}
+function imageTc(title,data,w,relId,cx,cy){let body=xmlPara(title,'center',21,false,0,0);if(data)body+=xmlImageRun(relId,cx,cy);return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${body}</w:tc>`}
+async function getImageFit(dataUrl,maxWmm,maxHmm){
+  return new Promise(resolve=>{
+    if(!dataUrl){resolve(null);return;}
+    const im=new Image();
+    im.onload=()=>{
+      const iw=im.naturalWidth||im.width||1, ih=im.naturalHeight||im.height||1;
+      const scale=Math.min(maxWmm/iw, maxHmm/ih);
+      resolve({cx:mmToEmu(iw*scale),cy:mmToEmu(ih*scale)});
     };
-    im.onerror = () => {
-      resolve({
-        width: Math.round(maxW_mm * 3.7795275591),
-        height: Math.round(maxH_mm * 3.7795275591)
-      });
-    };
-    im.src = dataUrl;
+    im.onerror=()=>resolve({cx:mmToEmu(maxWmm),cy:mmToEmu(maxHmm)});
+    im.src=dataUrl;
   });
 }
 
-// Normalize image to JS canvas JPEG Uint8Array
-async function normalizeImageToJpegBytes(dataUrl) {
-  return new Promise((resolve, reject) => {
-    if (!dataUrl) { resolve(null); return; }
-    const im = new Image();
-    im.onload = () => {
-      const c = document.createElement('canvas');
-      c.width = im.naturalWidth || im.width || 1;
-      c.height = im.naturalHeight || im.height || 1;
-      const ctx = c.getContext('2d');
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.drawImage(im, 0, 0, c.width, c.height);
-      const jpegUrl = c.toDataURL('image/jpeg', 0.90);
-      resolve(dataUrlToUint8Array(jpegUrl));
+async function normalizeImageJpeg(dataUrl){
+  return new Promise((resolve,reject)=>{
+    if(!dataUrl){resolve(dataUrl);return;}
+    const im=new Image();
+    im.onload=()=>{
+      const c=document.createElement('canvas');
+      c.width=im.naturalWidth||im.width||1; c.height=im.naturalHeight||im.height||1;
+      const ctx=c.getContext('2d'); ctx.drawImage(im,0,0,c.width,c.height);
+      resolve(c.toDataURL('image/jpeg',0.92));
     };
-    im.onerror = () => reject(new Error("图片加载失败，请重新选择图片"));
-    im.src = dataUrl;
+    im.onerror=()=>reject(new Error('图片无法读取，请使用 JPG/PNG 图片'));
+    im.src=dataUrl;
   });
 }
 
-async function handleGenerateDocx(btn) {
-  const status = $("statusMsg");
-  try {
-    if (btn) btn.disabled = true;
-    if (status) status.innerText = "正在准备 Word 文档...";
-    await generateDocxWithDocxJS();
-    if (status) status.innerText = "Word 文档导出成功！";
-  } catch (err) {
-    console.error("生成 Word 失败:", err);
-    alert("生成 Word 失败: " + err.message);
-    if (status) status.innerText = "生成失败，请重试";
-  } finally {
-    if (btn) btn.disabled = false;
+async function tableXml(it,rels){
+  const tableW=cmToTwips(19), labelW=Math.round(tableW*0.233), rest=tableW-labelW, half=Math.round(tableW/2), each=Math.round(rest/3);
+  const rows=[cmToTwips(1),cmToTwips(1),cmToTwips(9.85),cmToTwips(1),cmToTwips(1)];
+  const addImg=async(data)=>{if(!data)return null;const id='rIdImg'+(rels.length+1);const normalized=await normalizeImageJpeg(data);const bytes=dataUrlToUint8Array(normalized);rels.push({id,ext:'jpg',bytes});return {id,ext:'jpg',bytes}}
+  const a=await addImg(it.image), b=await addImg(it.data);
+  const da=await getImageFit(it.image,9.25,9.55), db=await getImageFit(it.data,9.25,9.55);
+  function imageTc(data,rel,dim){
+    let body='';
+    if(data&&rel&&dim) body=xmlImageRun(rel.id,dim.cx,dim.cy);
+    return `<w:tc><w:tcPr><w:tcW w:w="${half}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${body}</w:tc>`;
   }
+  let x=`<w:tbl><w:tblPr><w:tblW w:w="${tableW}" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="0" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid><w:gridCol w:w="${labelW}"/><w:gridCol w:w="${each}"/><w:gridCol w:w="${each}"/><w:gridCol w:w="${each}"/></w:tblGrid>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[0]}" w:hRule="exact"/></w:trPr>${tc('查验子项',labelW)}${tc(it.subItem,rest,'left',1,3)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[1]}" w:hRule="exact"/></w:trPr>${tc('现场拍摄影像',half,'center',1,2)}${tc('现场拍摄数据',half,'center',1,2)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[2]}" w:hRule="exact"/></w:trPr>${imageTc(it.image,a,da)}${imageTc(it.data,b,db)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[3]}" w:hRule="exact"/></w:trPr>${tc('拍摄位置',labelW)}${tc(it.location,rest,'left',1,3)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[4]}" w:hRule="exact"/></w:trPr>${tc('拍摄说明',labelW)}${tc(it.note,rest,'left',1,3)}</w:tr>`;
+  return x+'</w:tbl>';
 }
-
-// Rock-solid DOCX Generation using standard docx library or compliant structure
-async function generateDocxWithDocxJS() {
-  const name = $('projectName').value.trim() || '消防查验图片资料';
-  const date = $('projectDate').value || '';
-  
-  if (typeof docx === 'undefined') {
-    throw new Error('Word 生成组件未成功加载，请检查网络连接或刷新页面');
-  }
-
-  const {
-    Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
-    WidthType, AlignmentType, HeightRule, VerticalAlign, ImageRun,
-    PageBreak, BorderStyle
-  } = docx;
-
-  const sections = [];
-  const children = [];
-
-  // Cover Page
-  const logoSrc = document.querySelector('.cover-logo')?.src;
-  if (logoSrc) {
-    try {
-      const logoBytes = await normalizeImageToJpegBytes(logoSrc);
-      const logoDim = await getImageFit(logoSrc, 20.2, 15.8);
-      children.push(
-        new Paragraph({
-          alignment: AlignmentType.LEFT,
-          spacing: { before: 0, after: 0 },
-          children: [
-            new ImageRun({
-              data: logoBytes,
-              transformation: { width: logoDim.width, height: logoDim.height }
-            })
-          ]
-        })
-      );
-    } catch(e) {
-      console.warn("Logo load error:", e);
+async function generateDocx(){
+  const name=$('projectName').value.trim()||'消防查验图片资料', date=$('projectDate').value||'';
+  const entries=[]; const rels=[]; let rid=1;
+  const logo=document.querySelector('.cover-logo')?.src;
+  let docBody='';
+  if(logo){const normalizedLogo=await normalizeImageJpeg(logo);const ext='jpg',bytes=dataUrlToUint8Array(normalizedLogo),id='rId'+(rels.length+1);rels.push({id,ext,bytes});docBody+=`<w:p><w:pPr><w:jc w:val="left"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline><wp:extent cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/><wp:docPr id="10" name="logo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="10" name="logo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+  docBody+=xmlPara(name,'center',52,true,1440*2,0);
+  docBody+=xmlPara('消防查验阶段图片资料','center',48,false,1440*2,0);
+  docBody+='<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="7633" w:after="0"/></w:pPr>'+xmlTextRun('江苏安仕达消防技术有限公司',28)+'</w:p>';
+  docBody+=xmlPara(formatDate(date),'center',28,false,240,0);
+  docBody+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+  // 固定每页表格位置：第1个表格距页面顶部2.5mm；第2个表格紧跟15mm（1.5cm）间距。
+  // 只有1个表格时仍使用第1个表格的同一位置，不做上下居中或重新定位。
+  const spacer = (mm)=>`<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="1" w:lineRule="exact"/></w:pPr><w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>`;
+  const fixedSpacer = (mm)=>`<w:p><w:pPr><w:spacing w:before="${mmToTwips(mm)}" w:after="0"/></w:pPr></w:p>`;
+  for(let i=0;i<items.length;i+=2){
+    if(i>0)docBody+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+    // 页面顶部固定2.5mm，与网页预览第1个表格的位置一致。
+    docBody+=fixedSpacer(2.5);
+    docBody+=await tableXml(items[i],rels);
+    if(items[i+1]){
+      // 两表格之间固定1.5cm；不随是否存在第二张表格而改变第1张表格位置。
+      docBody+=fixedSpacer(15);
+      docBody+=await tableXml(items[i+1],rels);
     }
   }
-
-  // Cover Titles
-  children.push(
-    new Paragraph({
-      alignment: AlignmentType.CENTER,
-      spacing: { before: 2400, after: 0 },
-      children: [
-        new TextRun({
-          text: name,
-          bold: true,
-          size: 52, // 26pt
-          font: "SimSun"
-        })
-      ]
-    }),
-    new Paragraph({
-      alignment: AlignmentType.CENTER,
-      spacing: { before: 2800, after: 0 },
-      children: [
-        new TextRun({
-          text: "消防查验阶段图片资料",
-          size: 48, // 24pt
-          font: "SimSun"
-        })
-      ]
-    }),
-    new Paragraph({
-      alignment: AlignmentType.CENTER,
-      spacing: { before: 7000, after: 0 },
-      children: [
-        new TextRun({
-          text: "江苏安仕达消防技术有限公司",
-          size: 28, // 14pt
-          font: "SimSun"
-        })
-      ]
-    }),
-    new Paragraph({
-      alignment: AlignmentType.CENTER,
-      spacing: { before: 240, after: 0 },
-      children: [
-        new TextRun({
-          text: formatDate(date),
-          size: 28, // 14pt
-          font: "SimSun"
-        })
-      ]
-    })
-  );
-
-  // Helper to build 1 table
-  async function buildDocxTable(it) {
-    const tableW_dxa = 10772; // 19cm in dxa (1cm = 567 dxa)
-    const labelW_dxa = Math.round(tableW_dxa * 0.233);
-    const restW_dxa = tableW_dxa - labelW_dxa;
-    const halfW_dxa = Math.round(tableW_dxa / 2);
-
-    const thinBorder = { style: BorderStyle.SINGLE, size: 4, color: "333333" };
-    const borders = {
-      top: thinBorder, bottom: thinBorder, left: thinBorder, right: thinBorder
-    };
-
-    let img1Run = null, img2Run = null;
-    if (it.image) {
-      const bytes = await normalizeImageToJpegBytes(it.image);
-      const dim = await getImageFit(it.image, 92.5, 95.5);
-      img1Run = new ImageRun({
-        data: bytes,
-        transformation: { width: dim.width, height: dim.height }
-      });
-    }
-    if (it.data) {
-      const bytes = await normalizeImageToJpegBytes(it.data);
-      const dim = await getImageFit(it.data, 92.5, 95.5);
-      img2Run = new ImageRun({
-        data: bytes,
-        transformation: { width: dim.width, height: dim.height }
-      });
-    }
-
-    const rows = [
-      // Row 1: SubItem (Height 10mm ~ 567 dxa)
-      new TableRow({
-        height: { value: 567, rule: HeightRule.EXACTLY },
-        children: [
-          new TableCell({
-            width: { size: labelW_dxa, type: WidthType.DXA },
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: "查验子项", font: "SimSun", size: 21 })] })]
-          }),
-          new TableCell({
-            width: { size: restW_dxa, type: WidthType.DXA },
-            columnSpan: 3,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.LEFT, children: [new TextRun({ text: it.subItem || "", font: "SimSun", size: 21 })] })]
-          })
-        ]
-      }),
-
-      // Row 2: Photo Titles (Height 10mm ~ 567 dxa)
-      new TableRow({
-        height: { value: 567, rule: HeightRule.EXACTLY },
-        children: [
-          new TableCell({
-            width: { size: halfW_dxa, type: WidthType.DXA },
-            columnSpan: 2,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: "现场拍摄影像", font: "SimSun", size: 21 })] })]
-          }),
-          new TableCell({
-            width: { size: halfW_dxa, type: WidthType.DXA },
-            columnSpan: 2,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: "现场拍摄数据", font: "SimSun", size: 21 })] })]
-          })
-        ]
-      }),
-
-      // Row 3: Photo Cell (Height 98.5mm ~ 5584 dxa)
-      new TableRow({
-        height: { value: 5584, rule: HeightRule.EXACTLY },
-        children: [
-          new TableCell({
-            width: { size: halfW_dxa, type: WidthType.DXA },
-            columnSpan: 2,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: img1Run ? [img1Run] : [] })]
-          }),
-          new TableCell({
-            width: { size: halfW_dxa, type: WidthType.DXA },
-            columnSpan: 2,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: img2Run ? [img2Run] : [] })]
-          })
-        ]
-      }),
-
-      // Row 4: Location (Height 10mm ~ 567 dxa)
-      new TableRow({
-        height: { value: 567, rule: HeightRule.EXACTLY },
-        children: [
-          new TableCell({
-            width: { size: labelW_dxa, type: WidthType.DXA },
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: "拍摄位置", font: "SimSun", size: 21 })] })]
-          }),
-          new TableCell({
-            width: { size: restW_dxa, type: WidthType.DXA },
-            columnSpan: 3,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.LEFT, children: [new TextRun({ text: it.location || "", font: "SimSun", size: 21 })] })]
-          })
-        ]
-      }),
-
-      // Row 5: Note (Height 10mm ~ 567 dxa)
-      new TableRow({
-        height: { value: 567, rule: HeightRule.EXACTLY },
-        children: [
-          new TableCell({
-            width: { size: labelW_dxa, type: WidthType.DXA },
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: "拍摄说明", font: "SimSun", size: 21 })] })]
-          }),
-          new TableCell({
-            width: { size: restW_dxa, type: WidthType.DXA },
-            columnSpan: 3,
-            verticalAlign: VerticalAlign.CENTER,
-            borders: borders,
-            children: [new Paragraph({ alignment: AlignmentType.LEFT, children: [new TextRun({ text: it.note || "", font: "SimSun", size: 21 })] })]
-          })
-        ]
-      })
-    ];
-
-    return new Table({
-      width: { size: tableW_dxa, type: WidthType.DXA },
-      rows: rows
-    });
-  }
-
-  // Generate pages with 2 tables each
-  for (let i = 0; i < items.length; i += 2) {
-    // Page break
-    children.push(new Paragraph({ children: [new PageBreak()] }));
-
-    // Top spacing 2.5mm ~ 142 dxa
-    children.push(
-      new Paragraph({
-        spacing: { before: 142, after: 0 }
-      })
-    );
-
-    // Table 1
-    const tbl1 = await buildDocxTable(items[i]);
-    children.push(tbl1);
-
-    if (items[i + 1]) {
-      // Spacing 1.5cm ~ 850 dxa between table 1 and table 2
-      children.push(
-        new Paragraph({
-          spacing: { before: 850, after: 0 }
-        })
-      );
-      const tbl2 = await buildDocxTable(items[i + 1]);
-      children.push(tbl2);
-    }
-  }
-
-  const doc = new Document({
-    sections: [{
-      properties: {
-        page: {
-          size: { width: 11906, height: 16838 }, // A4
-          margin: { top: 0, right: 425, bottom: 0, left: 425 }
-        }
-      },
-      children: children
-    }]
-  });
-
-  const blob = await Packer.toBlob(doc);
-  saveAs(blob, `${name}_图片数据.docx`);
+  const relEntries=rels.map(r=>`<Relationship Id="${r.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${rels.indexOf(r)+1}.${r.ext}"/>`).join('');
+  const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>${docBody}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="0" w:right="425" w:bottom="0" w:left="425" w:header="0" w:footer="0" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+  const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="SimSun" w:eastAsia="宋体"/><w:lang w:val="zh-CN"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0"/></w:pPr></w:pPrDefault></w:docDefaults></w:styles>`;
+  const settings=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:zoom w:percent="100"/></w:settings>`;
+  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Default Extension="jpeg" ContentType="image/jpeg"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml"/></Types>`;
+  const rootRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  const wordRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/><Relationship Id="rIdSettings" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>${relEntries}</Relationships>`;
+  entries.push({name:'[Content_Types].xml',data:contentTypes},{name:'_rels/.rels',data:rootRels},{name:'word/document.xml',data:documentXml},{name:'word/styles.xml',data:styles},{name:'word/settings.xml',data:settings},{name:'word/_rels/document.xml.rels',data:wordRels});
+  rels.forEach((r,i)=>entries.push({name:`word/media/image${i+1}.${r.ext}`,data:r.bytes}));
+  const blob=makeZip(entries); const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${name}_图片数据.docx`;a.type='application/vnd.openxmlformats-officedocument.wordprocessingml.document';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
-
 function generatePdf(){
   const oldTitle=document.title;document.title=( $('projectName').value.trim()||'消防查验图片资料')+'_图片数据';
   alert('即将打开打印窗口。请选择“另存为 PDF”即可生成 PDF 文件。');
