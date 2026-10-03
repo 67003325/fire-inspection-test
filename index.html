@@ -23,14 +23,17 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 .badge{display:inline-block;background:#eef4ff;color:#1667d9;padding:4px 9px;border-radius:999px;font-size:12px}
 .hidden{display:none!important}
 .preview-page{background:#fff;max-width:900px;margin:20px auto;padding:45px;box-shadow:0 2px 15px #0002}
-.cover{min-height:900px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cover{width:210mm;height:297mm;min-height:297mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:0;left:0;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(1em)}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(1em)}.cover-bottom{margin-top:auto;text-align:center;padding-top:80px}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:20px;font-size:14pt;font-weight:400}
-.word-table{width:12.8cm;border-collapse:collapse;margin:20px auto 35px;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt}.word-table td{border:1px solid #333;padding:10px;vertical-align:middle;min-height:45px;font-family:"SimSun","宋体",serif;font-size:10.5pt}.label{font-weight:700;background:#f8f8f8;width:16%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}
-.photo-block{padding:0!important;vertical-align:top!important}.photo-title{font-weight:700;text-align:center;padding:10px 6px;border-bottom:1px solid #333;background:#f8f8f8;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell{height:260px;text-align:center;padding:8px;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{max-width:100%;max-height:240px;object-fit:contain}
+.table-page{width:210mm;min-height:297mm;background:#fff;margin:20px auto;padding:10mm 0;box-sizing:border-box;page-break-after:always;display:flex;flex-direction:column;justify-content:flex-start}.table-page:last-child{page-break-after:auto}.word-table{width:12.8cm;border-collapse:collapse;margin:0 auto 8mm;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt}.word-table tr:nth-child(1){height:9mm}.word-table tr:nth-child(3){height:9mm}.word-table tr:nth-child(4){height:13mm}.word-table td{border:1px solid #333;padding:6px;vertical-align:middle;font-family:"SimSun","宋体",serif;font-size:10.5pt;line-height:1.2}.label{font-weight:700;background:#f8f8f8;width:16%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-block{padding:0!important;vertical-align:top!important}.photo-title{height:9mm;line-height:9mm;font-weight:700;text-align:center;padding:0 6px;border-bottom:1px solid #333;background:#f8f8f8;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell{height:55mm!important;max-height:55mm!important;text-align:center;padding:4px;overflow:hidden;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{display:block;margin:0 auto;max-width:100%;max-height:48mm;width:auto;height:auto;object-fit:contain}.export-area{background:#fff}.small{font-size:13px;color:#6b7280}
 .small{font-size:13px;color:#6b7280}
 @media(max-width:700px){.photo-grid{grid-template-columns:1fr}.preview-page{padding:20px}.cover{min-height:600px}.cover .project{font-size:27px}}
-@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.page-break{break-before:page}.word-table{break-inside:avoid;width:12.8cm}}
+@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.table-page{margin:0;width:210mm;min-height:297mm;padding:10mm 0;break-after:page}.word-table{break-inside:avoid;width:12.8cm;margin-bottom:8mm}.photo-cell{height:55mm!important;max-height:55mm!important}.photo-cell img{max-height:48mm!important}}
 </style>
+
+<script src="https://unpkg.com/docx@9.5.1/build/index.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 <header>消防查验图片资料 · Windows 测试版</header>
@@ -47,7 +50,7 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 <div class="card no-print">
 <div class="actions">
 <button class="secondary" onclick="addItem()">＋ 新增查验子项</button>
-<button class="success" onclick="finishProject()">完成并生成预览</button>
+<button class="success" onclick="finishProject()">生成 Word / PDF</button>
 </div>
 <p class="small">每个查验子项需要 2 张照片：第1张为“现场拍摄影像”，第2张为“现场拍摄数据”。每页预览放 2 个表格。</p>
 </div>
@@ -55,11 +58,12 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 
 <section id="preview" class="hidden">
 <div class="card no-print">
-<h2>生成预览</h2>
-<p>下面按照“封面 → 每页2个查验表格”的规则生成。浏览器可直接打印为 PDF。</p>
+<h2>生成 Word / PDF</h2>
+<p>文档按 A4 页面生成：封面 1 页，后续每页固定放 2 个查验表格；照片单元格高度固定，照片只在单元格内缩放。</p>
 <div class="actions">
 <button class="secondary" onclick="backToEdit()">← 返回修改</button>
-<button class="primary" onclick="window.print()">打印 / 保存 PDF</button>
+<button class="primary" onclick="generateDocx()">生成 Word（DOCX）</button>
+<button class="primary" onclick="generatePdf()">生成 PDF</button>
 </div>
 </div>
 <div id="previewContent"></div>
@@ -137,7 +141,7 @@ function buildPreview(){
     </div>
   </div>`;
   items.forEach((it,i)=>{
-    if(i%2===0) html+=`<div class="preview-page ${i? "page-break":""}">`;
+    if(i%2===0) html+=`<div class="table-page export-area">`;
     html+=tableHtml(it,i+1);
     if(i%2===1 || i===items.length-1) html+=`</div>`;
   });
@@ -159,6 +163,61 @@ function tableHtml(it,n){
  <tr><td class="label">拍摄位置</td><td colspan="3">${esc(it.location)}</td></tr>
  <tr><td class="label">拍摄说明</td><td colspan="3">${esc(it.note)}</td></tr>
  </table>`;
+}
+
+function dataUrlToUint8Array(dataUrl){
+  const base64=dataUrl.split(',')[1]||''; const bin=atob(base64); const arr=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); return arr;
+}
+function cmToTwips(cm){return Math.round(cm/2.54*1440)}
+function pt(n){return n*2}
+async function generateDocx(){
+  if(!window.docx){alert('Word生成组件尚未加载，请检查网络后重试。');return}
+  const {Document,Packer,Paragraph,TextRun,ImageRun,Table,TableRow,TableCell,WidthType,AlignmentType,VerticalAlign,PageBreak,PageOrientation,HeightRule,ShadingType}=window.docx;
+  const name=$('projectName').value.trim(), date=$('projectDate').value||'';
+  const children=[];
+  const logoSrc=document.querySelector('.cover-logo')?.src;
+  if(logoSrc){
+    children.push(new Paragraph({alignment:AlignmentType.LEFT,spacing:{before:0,after:240},children:[new ImageRun({data:dataUrlToUint8Array(logoSrc),transformation:{width:76,height:60}})]}));
+  }
+  children.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:360,after:120},children:[new TextRun({text:name,bold:true,font:'SimSun',size:52})]}));
+  children.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:0,after:720},children:[new TextRun({text:'消防查验阶段图片资料',font:'SimSun',size:48})]}));
+  children.push(new Paragraph({spacing:{before:9000},alignment:AlignmentType.CENTER,children:[new TextRun({text:'江苏安仕达消防技术有限公司',font:'SimSun',size:28})]}));
+  children.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:240,after:0},children:[new TextRun({text:formatDate(date),font:'SimSun',size:28})]}));
+  if(items.length){children.push(new Paragraph({children:[new PageBreak()]}));}
+  const tableWidth=cmToTwips(12.8), labelW=Math.round(tableWidth*0.16), contentW=tableWidth-labelW;
+  const photoW=Math.round(tableWidth/2);
+  function cell(text,w,opts={}){return new TableCell({width:{size:w,type:WidthType.DXA},verticalAlign:opts.vertical||VerticalAlign.CENTER,shading:opts.shading?{fill:'F8F8F8',type:ShadingType.CLEAR}:undefined,children:[new Paragraph({alignment:opts.align||AlignmentType.CENTER,spacing:{before:0,after:0,line:240},children:[new TextRun({text:text||'',font:'SimSun',size:21,bold:!!opts.bold})]})]})}
+  function photoCell(title,data){
+    const children=[new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:0,after:60},children:[new TextRun({text:title,font:'SimSun',size:21,bold:true})]})];
+    if(data){children.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:0,after:0},children:[new ImageRun({data:dataUrlToUint8Array(data),transformation:{width:240,height:150}})]}));}
+    return new TableCell({width:{size:photoW,type:WidthType.DXA},verticalAlign:VerticalAlign.TOP,children});
+  }
+  function makeTable(it){
+    return new Table({width:{size:tableWidth,type:WidthType.DXA},columnWidths:[labelW,Math.round((tableWidth-labelW)/3),Math.round((tableWidth-labelW)/3),Math.round((tableWidth-labelW)/3)],rows:[
+      new TableRow({height:{value:500,rule:HeightRule.EXACT},children:[cell('查验子项',labelW,{bold:true,shading:true}),new TableCell({width:{size:contentW,type:WidthType.DXA},columnSpan:3,verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.LEFT,spacing:{before:0,after:0},children:[new TextRun({text:it.subItem,font:'SimSun',size:21})]})]})]}),
+      new TableRow({height:{value:3118,rule:HeightRule.EXACT},children:[photoCell('现场拍摄影像',it.image),photoCell('现场拍摄数据',it.data)]}),
+      new TableRow({height:{value:500,rule:HeightRule.EXACT},children:[cell('拍摄位置',labelW,{bold:true,shading:true}),new TableCell({width:{size:contentW,type:WidthType.DXA},columnSpan:3,verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.LEFT,children:[new TextRun({text:it.location,font:'SimSun',size:21})]})]})]}),
+      new TableRow({height:{value:700,rule:HeightRule.EXACT},children:[cell('拍摄说明',labelW,{bold:true,shading:true}),new TableCell({width:{size:contentW,type:WidthType.DXA},columnSpan:3,verticalAlign:VerticalAlign.CENTER,children:[new Paragraph({alignment:AlignmentType.LEFT,children:[new TextRun({text:it.note,font:'SimSun',size:21})]})]})]})
+    ]});
+  }
+  for(let i=0;i<items.length;i+=2){
+    if(i>0) children.push(new Paragraph({children:[new PageBreak()]}));
+    children.push(makeTable(items[i]));
+    if(items[i+1]) children.push(new Paragraph({spacing:{before:220,after:0},children:[new TextRun({text:'',font:'SimSun',size:1})]}),makeTable(items[i+1]));
+  }
+  const doc=new Document({sections:[{properties:{page:{size:{width:11906,height:16838},margin:{top:711,right:711,bottom:711,left:711}}},children}]});
+  const blob=await Packer.toBlob(doc); saveAs(blob,`${name||'消防查验图片资料'}.docx`);
+}
+async function generatePdf(){
+  if(!window.html2pdf){alert('PDF生成组件尚未加载，请检查网络后重试。');return}
+  const root=document.createElement('div'); root.style.background='#fff'; root.style.width='210mm'; root.style.margin='0 auto';
+  const cover=document.querySelector('.cover').cloneNode(true); root.appendChild(cover);
+  document.querySelectorAll('.table-page').forEach(p=>root.appendChild(p.cloneNode(true)));
+  document.body.appendChild(root);
+  try{
+    await html2pdf().set({margin:0,filename:`${$('projectName').value.trim()||'消防查验图片资料'}.pdf`,image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true,backgroundColor:'#fff'},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from(root).save();
+  }finally{root.remove();}
 }
 function backToEdit(){$("preview").classList.add("hidden");$("editor").classList.remove("hidden");window.scrollTo(0,0)}
 function esc(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
