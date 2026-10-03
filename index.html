@@ -24,7 +24,7 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 .hidden{display:none!important}
 .preview-page{background:#fff;max-width:900px;margin:20px auto;padding:45px;box-shadow:0 2px 15px #0002}
 .cover{width:210mm;height:297mm;min-height:297mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(calc(2em + 0mm))}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(calc(2em + 0mm))}.cover-bottom{position:absolute;left:0;right:0;bottom:40mm;text-align:center;padding:0}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:5mm;font-size:14pt;font-weight:400}
+.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{position:absolute;top:60mm;left:0;right:0;text-align:center;margin:0;font-family:"SimSun","宋体",serif;font-size:26pt;font-weight:700;line-height:1.2;}.cover .title{position:absolute;top:74mm;left:0;right:0;text-align:center;margin:0;font-family:"SimSun","宋体",serif;font-size:24pt;font-weight:400;line-height:1.2;}.cover-bottom{margin-top:auto;text-align:center;padding-top:20px;transform:translateY(calc(-2em - 15mm))}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:-17.799999999999997px;font-size:14pt;font-weight:400}
 .table-page{width:210mm;height:297mm;min-height:297mm;background:#fff;margin:20px auto;padding:0;box-sizing:border-box;page-break-after:always;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.table-page:last-child{page-break-after:auto}.word-table{width:19cm;height:138.5mm;border-collapse:collapse;margin:0;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt;flex:0 0 138.5mm}.word-table tr:nth-child(1){height:10mm!important}.word-table tr:nth-child(2){height:10mm!important}.word-table tr:nth-child(3){height:98.5mm!important}.word-table tr:nth-child(4){height:10mm!important}.word-table tr:nth-child(5){height:10mm!important}.word-table td{border:1px solid #333;padding:2px 4px;vertical-align:middle;font-family:"SimSun","宋体",serif;font-size:10.5pt;line-height:1.05;overflow:hidden}.label{font-weight:400;background:#fff;width:23.3%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-block{padding:0!important;vertical-align:middle!important}.photo-title{height:10mm;line-height:10mm;font-weight:400;text-align:center;padding:0 4px;background:#fff;font-family:"SimSun","宋体",serif;font-size:10.5pt;overflow:hidden}.photo-cell{height:98.5mm!important;max-height:98.5mm!important;text-align:center;padding:2px;overflow:hidden;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{display:block;margin:0 auto;max-width:100%;max-height:96mm;width:auto;height:auto;object-fit:contain}.word-table .value-cell{text-align:left}.export-area{background:#fff}.small{font-size:13px;color:#6b7280}@media(max-width:700px){.photo-grid{grid-template-columns:1fr}.preview-page{padding:20px}.cover{min-height:600px}.cover .project{font-size:27px}}@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.table-page{margin:0;width:210mm;height:297mm;min-height:297mm;padding:0;break-after:page;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.word-table{break-inside:avoid;width:19cm;height:138.5mm;margin:0;flex:0 0 138.5mm}.photo-cell{height:98.5mm!important;max-height:98.5mm!important}.photo-cell img{max-height:96mm!important}}</style>
 
 </head>
@@ -253,125 +253,41 @@ async function tableXml(it,rels){
   return x+'</w:tbl>';
 }
 async function generateDocx(){
-  const name=$('projectName').value.trim()||'消防查验图片资料';
-  const date=$('projectDate').value||'';
-  const entries=[];
-  const images=[];
-  let docPrId=100;
-
-  function addImage(dataUrl){
-    if(!dataUrl) return null;
-    return normalizeImageJpeg(dataUrl).then(normalized=>{
-      const bytes=dataUrlToUint8Array(normalized);
-      const id='rIdImg'+(images.length+1);
-      images.push({id,bytes});
-      return {id,index:images.length};
-    });
-  }
-
-  function run(text,size=21,bold=false){
-    return `<w:r><w:rPr><w:rFonts w:ascii="SimSun" w:hAnsi="SimSun" w:eastAsia="宋体"/><w:sz w:val="${size}"/>${bold?'<w:b/>':''}</w:rPr><w:t xml:space="preserve">${escXml(text||'')}</w:t></w:r>`;
-  }
-  function para(text='',align='left',size=21,bold=false,before=0,after=0){
-    return `<w:p><w:pPr><w:jc w:val="${align}"/><w:spacing w:before="${before}" w:after="${after}" w:line="240" w:lineRule="auto"/></w:pPr>${run(text,size,bold)}</w:p>`;
-  }
-  function imageRun(relId,cx,cy){
-    const id=docPrId++;
-    return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="${id}" name="Picture ${id}"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="${id}" name="Picture ${id}"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`;
-  }
-  function cell(text,w,align='center',span=1){
-    return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${span>1?`<w:gridSpan w:val="${span}"/>`:''}<w:vAlign w:val="center"/></w:tcPr>${para(text,align,21,false,0,0)}</w:tc>`;
-  }
-
-  async function imageCell(dataUrl,w,maxWmm,maxHmm){
-    if(!dataUrl) return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr></w:tc>`;
-    const im=await addImage(dataUrl);
-    const dim=await getImageFit(dataUrl,maxWmm,maxHmm);
-    return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${imageRun(im.id,dim.cx,dim.cy)}</w:tc>`;
-  }
-
-  async function tableXml(it){
-    const tableW=cmToTwips(19);
-    const labelW=Math.round(tableW*0.233);
-    const rest=tableW-labelW;
-    const half=Math.round(tableW/2);
-    const each=Math.round(rest/3);
-    const rows=[cmToTwips(1),cmToTwips(1),cmToTwips(9.85),cmToTwips(1),cmToTwips(1)];
-
-    let x=`<w:tbl><w:tblPr><w:tblW w:w="${tableW}" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="0" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar><w:tblBorders><w:top w:val="single" w:sz="4" w:space="0"/><w:left w:val="single" w:sz="4" w:space="0"/><w:bottom w:val="single" w:sz="4" w:space="0"/><w:right w:val="single" w:sz="4" w:space="0"/><w:insideH w:val="single" w:sz="4" w:space="0"/><w:insideV w:val="single" w:sz="4" w:space="0"/></w:tblBorders></w:tblPr><w:tblGrid><w:gridCol w:w="${labelW}"/><w:gridCol w:w="${each}"/><w:gridCol w:w="${each}"/><w:gridCol w:w="${each}"/></w:tblGrid>`;
-
-    x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[0]}" w:hRule="exact"/></w:trPr>${cell('查验子项',labelW)}${cell(it.subItem,rest,'left',3)}</w:tr>`;
-    x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[1]}" w:hRule="exact"/></w:trPr>${cell('现场拍摄影像',half,'center',2)}${cell('现场拍摄数据',half,'center',2)}</w:tr>`;
-    x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[2]}" w:hRule="exact"/></w:trPr>${await imageCell(it.image,half,9.25,9.55)}${await imageCell(it.data,half,9.25,9.55)}</w:tr>`;
-    x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[3]}" w:hRule="exact"/></w:trPr>${cell('拍摄位置',labelW)}${cell(it.location,rest,'left',3)}</w:tr>`;
-    x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[4]}" w:hRule="exact"/></w:trPr>${cell('拍摄说明',labelW)}${cell(it.note,rest,'left',3)}</w:tr>`;
-    return x+'</w:tbl>';
-  }
-
-  let body='';
-
-  // Cover: four text lines; logo retained from the page preview.
+  const name=$('projectName').value.trim()||'消防查验图片资料', date=$('projectDate').value||'';
+  const entries=[]; const rels=[]; let rid=1;
   const logo=document.querySelector('.cover-logo')?.src;
-  if(logo){
-    const normalized=await normalizeImageJpeg(logo);
-    const bytes=dataUrlToUint8Array(normalized);
-    const id='rIdImg'+(images.length+1);
-    images.push({id,bytes});
-    body+=`<w:p><w:pPr><w:jc w:val="left"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline><wp:extent cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/><wp:docPr id="${docPrId++}" name="ASD Logo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="${docPrId++}" name="ASD Logo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`;
-  }
-  body+=para(name,'center',52,true,0,0);
-  body+=para('消防查验阶段图片资料','center',48,false,0,0);
-  body+=para('江苏安仕达消防技术有限公司','center',28,false,0,0);
-  body+=para(formatDate(date),'center',28,false,0,0);
-  body+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
-
+  let docBody='';
+  if(logo){const normalizedLogo=await normalizeImageJpeg(logo);const ext='jpg',bytes=dataUrlToUint8Array(normalizedLogo),id='rId'+(rels.length+1);rels.push({id,ext,bytes});docBody+=`<w:p><w:pPr><w:jc w:val="left"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline><wp:extent cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/><wp:docPr id="10" name="logo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="10" name="logo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+  docBody+=xmlPara(name,'center',52,true,1440*2,0);
+  docBody+=xmlPara('消防查验阶段图片资料','center',48,false,1440*2,0);
+  docBody+='<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="7633" w:after="0"/></w:pPr>'+xmlTextRun('江苏安仕达消防技术有限公司',28)+'</w:p>';
+  docBody+=xmlPara(formatDate(date),'center',28,false,240,0);
+  docBody+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+  // 固定每页表格位置：第1个表格距页面顶部2.5mm；第2个表格紧跟15mm（1.5cm）间距。
+  // 只有1个表格时仍使用第1个表格的同一位置，不做上下居中或重新定位。
+  const spacer = (mm)=>`<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="1" w:lineRule="exact"/></w:pPr><w:r><w:t xml:space="preserve"> </w:t></w:r></w:p>`;
+  const fixedSpacer = (mm)=>`<w:p><w:pPr><w:spacing w:before="${mmToTwips(mm)}" w:after="0"/></w:pPr></w:p>`;
   for(let i=0;i<items.length;i+=2){
-    if(i>0) body+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
-    body+=`<w:p><w:pPr><w:spacing w:before="${cmToTwips(0.25)}" w:after="0"/></w:pPr></w:p>`;
-    body+=await tableXml(items[i]);
+    if(i>0)docBody+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+    // 页面顶部固定2.5mm，与网页预览第1个表格的位置一致。
+    docBody+=fixedSpacer(2.5);
+    docBody+=await tableXml(items[i],rels);
     if(items[i+1]){
-      body+=`<w:p><w:pPr><w:spacing w:before="${cmToTwips(1.5)}" w:after="0"/></w:pPr></w:p>`;
-      body+=await tableXml(items[i+1]);
+      // 两表格之间固定1.5cm；不随是否存在第二张表格而改变第1张表格位置。
+      docBody+=fixedSpacer(15);
+      docBody+=await tableXml(items[i+1],rels);
     }
   }
-
-  const relEntries=images.map((r,i)=>`<Relationship Id="${r.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${i+1}.jpg"/>`).join('');
-
-  const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
-<w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="0" w:right="425" w:bottom="0" w:left="425" w:header="0" w:footer="0"/></w:sectPr></w:body></w:document>`;
-
-  const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="SimSun" w:hAnsi="SimSun" w:eastAsia="宋体"/><w:lang w:val="zh-CN"/><w:sz w:val="21"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0"/></w:pPr></w:pPrDefault></w:docDefaults>
-</w:styles>`;
-
+  const relEntries=rels.map(r=>`<Relationship Id="${r.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${rels.indexOf(r)+1}.${r.ext}"/>`).join('');
+  const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>${docBody}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="0" w:right="425" w:bottom="0" w:left="425" w:header="0" w:footer="0" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+  const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="SimSun" w:eastAsia="宋体"/><w:lang w:val="zh-CN"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0"/></w:pPr></w:pPrDefault></w:docDefaults></w:styles>`;
   const settings=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:zoom w:percent="100"/></w:settings>`;
-  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.word.settings+xml"/></Types>`;
+  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Default Extension="jpeg" ContentType="image/jpeg"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml"/></Types>`;
   const rootRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
   const wordRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/><Relationship Id="rIdSettings" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>${relEntries}</Relationships>`;
-
-  entries.push(
-    {name:'[Content_Types].xml',data:contentTypes},
-    {name:'_rels/.rels',data:rootRels},
-    {name:'word/document.xml',data:documentXml},
-    {name:'word/styles.xml',data:styles},
-    {name:'word/settings.xml',data:settings},
-    {name:'word/_rels/document.xml.rels',data:wordRels}
-  );
-  images.forEach((r,i)=>entries.push({name:`word/media/image${i+1}.jpg`,data:r.bytes}));
-
-  try{
-    const blob=makeZip(entries);
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download=`${name}_图片数据.docx`;
-    a.click();
-    setTimeout(()=>URL.revokeObjectURL(a.href),2000);
-  }catch(err){
-    console.error(err);
-    alert('生成 Word 失败：'+err.message);
-  }
+  entries.push({name:'[Content_Types].xml',data:contentTypes},{name:'_rels/.rels',data:rootRels},{name:'word/document.xml',data:documentXml},{name:'word/styles.xml',data:styles},{name:'word/settings.xml',data:settings},{name:'word/_rels/document.xml.rels',data:wordRels});
+  rels.forEach((r,i)=>entries.push({name:`word/media/image${i+1}.${r.ext}`,data:r.bytes}));
+  const blob=makeZip(entries); const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${name}_图片数据.docx`;a.type='application/vnd.openxmlformats-officedocument.wordprocessingml.document';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 function generatePdf(){
   const oldTitle=document.title;document.title=( $('projectName').value.trim()||'消防查验图片资料')+'_图片数据';
