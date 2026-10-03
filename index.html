@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>消防查验图片资料</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei",Arial,sans-serif;background:#f4f6f8;color:#1f2937}
+header{background:#1677ff;color:#fff;padding:18px 22px;font-size:20px;font-weight:700}
+main{max-width:1000px;margin:22px auto;padding:0 16px}
+.card{background:#fff;border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 3px 14px #00000012}
+h2{margin:0 0 16px;font-size:20px}h3{margin:0 0 12px;font-size:17px}
+label{display:block;font-weight:600;margin:14px 0 7px}input,textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:9px;font-size:15px}
+textarea{min-height:80px;resize:vertical}
+button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:600;cursor:pointer}
+.primary{background:#1677ff;color:#fff}.secondary{background:#eef4ff;color:#1667d9}.danger{background:#fff0f0;color:#d22}.success{background:#16a34a;color:#fff}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.photo-box{border:2px dashed #cbd5e1;border-radius:12px;padding:14px;text-align:center;min-height:220px}
+.photo-box img{max-width:100%;max-height:260px;border-radius:8px;margin-top:10px}
+.photo-box input{border:0;padding:8px}
+.status{font-size:13px;margin-top:7px}.ok{color:#16803a}.warn{color:#b45309}
+.badge{display:inline-block;background:#eef4ff;color:#1667d9;padding:4px 9px;border-radius:999px;font-size:12px}
+.hidden{display:none!important}
+.preview-page{background:#fff;max-width:900px;margin:20px auto;padding:45px;box-shadow:0 2px 15px #0002}
+.cover{width:210mm;height:297mm;min-height:297mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(2em)}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(2em)}.cover-bottom{margin-top:auto;text-align:center;padding-top:20px;transform:translateY(-4.2em)}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:20px;font-size:14pt;font-weight:400}
+.table-page{width:210mm;height:297mm;min-height:297mm;background:#fff;margin:20px auto;padding:0;box-sizing:border-box;page-break-after:always;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.table-page:last-child{page-break-after:auto}.word-table{width:19cm;height:138.5mm;border-collapse:collapse;margin:0;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt;flex:0 0 138.5mm}.word-table tr:nth-child(1){height:10mm!important}.word-table tr:nth-child(2){height:10mm!important}.word-table tr:nth-child(3){height:98.5mm!important}.word-table tr:nth-child(4){height:10mm!important}.word-table tr:nth-child(5){height:10mm!important}.word-table td{border:1px solid #333;padding:2px 4px;vertical-align:middle;font-family:"SimSun","宋体",serif;font-size:10.5pt;line-height:1.05;overflow:hidden}.label{font-weight:400;background:#fff;width:23.3%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-block{padding:0!important;vertical-align:middle!important}.photo-title{height:10mm;line-height:10mm;font-weight:400;text-align:center;padding:0 4px;background:#fff;font-family:"SimSun","宋体",serif;font-size:10.5pt;overflow:hidden}.photo-cell{height:98.5mm!important;max-height:98.5mm!important;text-align:center;padding:2px;overflow:hidden;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{display:block;margin:0 auto;max-width:100%;max-height:96mm;width:auto;height:auto;object-fit:contain}.word-table .value-cell{text-align:left}.export-area{background:#fff}.small{font-size:13px;color:#6b7280}@media(max-width:700px){.photo-grid{grid-template-columns:1fr}.preview-page{padding:20px}.cover{min-height:600px}.cover .project{font-size:27px}}@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.table-page{margin:0;width:210mm;height:297mm;min-height:297mm;padding:0;break-after:page;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.word-table{break-inside:avoid;width:19cm;height:138.5mm;margin:0;flex:0 0 138.5mm}.photo-cell{height:98.5mm!important;max-height:98.5mm!important}.photo-cell img{max-height:96mm!important}}</style>
+
+</head>
+<body>
+<header>消防查验图片资料 · Windows 测试版</header>
+<main>
+<section id="editor">
+<div class="card">
+<h2>① 项目基本信息</h2>
+<label>项目名称</label><input id="projectName" placeholder="例如：XXX 项目">
+<label>日期</label><input id="projectDate" type="date">
+</div>
+
+<div id="items"></div>
+
+<div class="card no-print">
+<div class="actions">
+<button class="secondary" onclick="addItem()">＋ 新增查验子项</button>
+<button class="success" onclick="finishProject()">生成 Word / PDF</button>
+</div>
+<p class="small">每个查验子项需要 2 张照片：第1张为“现场拍摄影像”，第2张为“现场拍摄数据”。每页固定放 2 个表格；两表格间距 1.5 cm。</p>
+</div>
+</section>
+
+<section id="preview" class="hidden">
+<div class="card no-print">
+<h2>生成 Word / PDF</h2>
+<p>文档按 A4 页面生成：封面 1 页，后续每页固定放 2 个查验表格；两表格间距 1.5 cm；单表格时固定使用第1个表格的位置。照片只在固定单元格内等比例缩放。</p>
+<div class="actions">
+<button class="secondary" onclick="backToEdit()">← 返回修改</button>
+<button class="primary" onclick="generateDocx()">生成 Word（DOCX）</button>
+<button class="primary" onclick="generatePdf()">生成 PDF</button>
+</div>
+</div>
+<div id="previewContent"></div>
+</section>
+</main>
+
+<script>
+let items=[];
+let nextId=1;
+const $=id=>document.getElementById(id);
+
+function init(){
+  const d=new Date(); const iso=new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  $("projectDate").value=iso; addItem();
+}
+function addItem(){
+  items.push({id:nextId++,subItem:"",location:"",note:"",image:null,data:null});
+  renderItems();
+  setTimeout(()=>document.getElementById("item-"+items[items.length-1].id)?.scrollIntoView({behavior:"smooth",block:"start"}),50);
+}
+function renderItems(){
+  $("items").innerHTML=items.map((it,i)=>`
+  <div class="card" id="item-${it.id}">
+    <h2>查验子项 ${i+1} <span class="badge">${complete(it)?"已完成":"填写中"}</span></h2>
+    <label>查验子项</label>
+    <input value="${esc(it.subItem)}" placeholder="请输入查验子项" oninput="items[${i}].subItem=this.value;renderBadgesOnly()">
+    <label>拍摄位置</label>
+    <input value="${esc(it.location)}" placeholder="请输入拍摄位置" oninput="items[${i}].location=this.value">
+    <label>拍摄说明</label>
+    <textarea placeholder="请输入拍摄说明" oninput="items[${i}].note=this.value">${esc(it.note)}</textarea>
+    <div class="photo-grid">
+      ${photoBox(i,"image","现场拍摄影像",it.image)}
+      ${photoBox(i,"data","现场拍摄数据",it.data)}
+    </div>
+    <div class="actions">
+      ${items.length>1?`<button class="danger" onclick="removeItem(${i})">删除本项</button>`:""}
+    </div>
+  </div>`).join("");
+}
+function renderBadgesOnly(){ /* 保留输入焦点，不重绘 */ }
+function photoBox(i,key,title,data){
+  return `<div class="photo-box">
+    <h3>${title}</h3>
+    <input type="file" accept="image/*" capture="environment" onchange="loadPhoto(event,${i},'${key}')">
+    ${data?`<img src="${data}"><div class="status ok">✓ 已添加照片</div>`:`<div class="status warn">请添加照片</div>`}
+  </div>`;
+}
+function loadPhoto(e,i,key){
+  const f=e.target.files[0]; if(!f)return;
+  const r=new FileReader();r.onload=()=>{items[i][key]=r.result;renderItems();};r.readAsDataURL(f);
+}
+function removeItem(i){if(confirm("确定删除这个查验子项？")){items.splice(i,1);renderItems();}}
+function complete(it){return it.subItem.trim()&&it.location.trim()&&it.image&&it.data}
+function finishProject(){
+  const name=$("projectName").value.trim();
+  if(!name){alert("请先填写项目名称");$("projectName").focus();return}
+  const bad=items.findIndex(x=>!complete(x));
+  if(bad>=0){alert("请完成第 "+(bad+1)+" 个查验子项：查验子项、拍摄位置以及2张照片都需要填写。");return}
+  buildPreview();$("editor").classList.add("hidden");$("preview").classList.remove("hidden");window.scrollTo(0,0);
+}
+function formatDate(date){
+  if(!date) return "";
+  const p=date.split("-");
+  return p.length===3 ? `${p[0]} 年 ${p[1]} 月 ${p[2]} 日` : date;
+}
+function buildPreview(){
+  const name=esc($("projectName").value.trim()), date=esc($("projectDate").value||"");
+  let html=`<div class="preview-page cover">
+    <img class="cover-logo" src="data:image/jpeg;base64,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" alt="安仕达消防Logo">
+    <div class="project">${name}</div>
+    <div class="title">消防查验阶段图片资料</div>
+    <div class="cover-bottom">
+      <div class="company">江苏安仕达消防技术有限公司</div>
+      <div class="date">${formatDate(date)}</div>
+    </div>
+  </div>`;
+  items.forEach((it,i)=>{
+    if(i%2===0) html+=`<div class="table-page export-area">`;
+    html+=tableHtml(it,i+1);
+    if(i%2===1 || i===items.length-1) html+=`</div>`;
+  });
+  $("previewContent").innerHTML=html;
+}
+function tableHtml(it,n){
+ return `<table class="word-table">
+ <tr><td class="label">查验子项</td><td colspan="3" class="value-cell">${esc(it.subItem)}</td></tr>
+ <tr>
+   <td colspan="2" class="photo-block"><div class="photo-title">现场拍摄影像</div></td>
+   <td colspan="2" class="photo-block"><div class="photo-title">现场拍摄数据</div></td>
+ </tr>
+ <tr>
+   <td colspan="2" class="photo-block"><div class="photo-cell">${it.image?`<img src="${it.image}">`:""}</div></td>
+   <td colspan="2" class="photo-block"><div class="photo-cell">${it.data?`<img src="${it.data}">`:""}</div></td>
+ </tr>
+ <tr><td class="label">拍摄位置</td><td colspan="3" class="value-cell">${esc(it.location)}</td></tr>
+ <tr><td class="label">拍摄说明</td><td colspan="3" class="value-cell">${esc(it.note)}</td></tr>
+ </table>`;
+}
+
+function dataUrlToUint8Array(dataUrl){
+  const base64=(dataUrl.split(',')[1]||'').replace(/\s/g,''); const bin=atob(base64); const arr=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); return arr;
+}
+function cmToTwips(cm){return Math.round(cm/2.54*1440)}
+function mmToEmu(mm){return Math.round(mm/25.4*914400)}
+function escXml(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;')}
+function dataUrlMime(dataUrl){const m=(dataUrl||'').match(/^data:([^;,]+)/);return m?m[1]:'image/jpeg'}
+function imageExt(dataUrl){const m=dataUrlMime(dataUrl);return m.includes('png')?'png':'jpg'}
+
+// Minimal ZIP writer (stored entries, no external libraries required).
+const CRC_TABLE=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);t[n]=c>>>0;}return t;})();
+function crc32(bytes){let c=0xffffffff;for(let i=0;i<bytes.length;i++)c=CRC_TABLE[(c^bytes[i])&255]^(c>>>8);return (c^0xffffffff)>>>0}
+function u16(n){return new Uint8Array([n&255,(n>>>8)&255])}
+function u32(n){return new Uint8Array([n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255])}
+function concatBytes(parts){let total=0;for(const p of parts)total+=p.length;const out=new Uint8Array(total);let o=0;for(const p of parts){out.set(p,o);o+=p.length}return out}
+function utf8(s){return new TextEncoder().encode(s)}
+function makeZip(entries){
+  const local=[], central=[]; let offset=0;
+  for(const e of entries){const name=utf8(e.name), data=e.data instanceof Uint8Array?e.data:utf8(e.data);const crc=crc32(data);
+    const lh=concatBytes([u32(0x04034b50),u16(20),u16(0x800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data]);local.push(lh);
+    const ch=concatBytes([u32(0x02014b50),u16(20),u16(20),u16(0x800),u16(0),u16(0),u32(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);central.push(ch);offset+=lh.length;
+  }
+  const cd=concatBytes(central), body=concatBytes(local);const end=concatBytes([u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),u32(cd.length),u32(body.length),u16(0)]);
+  return new Blob([body,cd,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+function xmlTextRun(text,size=21,bold=false){return `<w:r><w:rPr><w:rFonts w:ascii="SimSun" w:eastAsia="宋体"/><w:sz w:val="${size}"/>${bold?'<w:b/>':''}</w:rPr><w:t xml:space="preserve">${escXml(text||'')}</w:t></w:r>`}
+function xmlPara(text='',align='left',size=21,bold=false,spaceBefore=0,spaceAfter=0){return `<w:p><w:pPr><w:jc w:val="${align}"/><w:spacing w:before="${spaceBefore}" w:after="${spaceAfter}" w:line="240" w:lineRule="auto"/></w:pPr>${xmlTextRun(text,size,bold)}</w:p>`}
+function xmlImageRun(relId,cx,cy){return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="1" name="photo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="0" name="photo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+function tc(text,w,align='center',rowSpan=1,colSpan=1,extra=''){return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${colSpan>1?`<w:gridSpan w:val="${colSpan}"/>`:''}<w:vAlign w:val="center"/>${extra}</w:tcPr>${xmlPara(text,align,21,false,0,0)}</w:tc>`}
+function imageTc(title,data,w,relId,cx,cy){let body=xmlPara(title,'center',21,false,0,0);if(data)body+=xmlImageRun(relId,cx,cy);return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${body}</w:tc>`}
+async function getImageFit(dataUrl,maxWmm,maxHmm){
+  return new Promise(resolve=>{
+    if(!dataUrl){resolve(null);return;}
+    const im=new Image();
+    im.onload=()=>{
+      const iw=im.naturalWidth||im.width||1, ih=im.naturalHeight||im.height||1;
+      const scale=Math.min(maxWmm/iw, maxHmm/ih);
+      resolve({cx:mmToEmu(iw*scale),cy:mmToEmu(ih*scale)});
+    };
+    im.onerror=()=>resolve({cx:mmToEmu(maxWmm),cy:mmToEmu(maxHmm)});
+    im.src=dataUrl;
+  });
+}
+async function tableXml(it,rels){
+  const tableW=cmToTwips(19), labelW=Math.round(tableW*0.233), rest=tableW-labelW, half=Math.round(tableW/2), each=Math.round(rest/3);
+  const rows=[cmToTwips(1),cmToTwips(1),cmToTwips(9.85),cmToTwips(1),cmToTwips(1)];
+  const addImg=(data)=>{if(!data)return null;const id='rIdImg'+(rels.length+1), ext=imageExt(data), bytes=dataUrlToUint8Array(data);rels.push({id,ext,bytes});return {id,ext,bytes}}
+  const a=addImg(it.image), b=addImg(it.data);
+  const da=await getImageFit(it.image,9.25,9.55), db=await getImageFit(it.data,9.25,9.55);
+  function imageTc(data,rel,dim){
+    let body='';
+    if(data&&rel&&dim) body=xmlImageRun(rel.id,dim.cx,dim.cy);
+    return `<w:tc><w:tcPr><w:tcW w:w="${half}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${body}</w:tc>`;
+  }
+  let x=`<w:tbl><w:tblPr><w:tblW w:w="${tableW}" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="0" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid><w:gridCol w:w="${labelW}"/><w:gridCol w:w="${each}"/><w:gridCol w:w="${each}"/><w:gridCol w:w="${each}"/></w:tblGrid>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[0]}" w:hRule="exact"/></w:trPr>${tc('查验子项',labelW)}${tc(it.subItem,rest,'left',1,3)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[1]}" w:hRule="exact"/></w:trPr>${tc('现场拍摄影像',half,'center',1,2)}${tc('现场拍摄数据',half,'center',1,2)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[2]}" w:hRule="exact"/></w:trPr>${imageTc(it.image,a,da)}${imageTc(it.data,b,db)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[3]}" w:hRule="exact"/></w:trPr>${tc('拍摄位置',labelW)}${tc(it.location,rest,'left',1,3)}</w:tr>`;
+  x+=`<w:tr><w:trPr><w:trHeight w:val="${rows[4]}" w:hRule="exact"/></w:trPr>${tc('拍摄说明',labelW)}${tc(it.note,rest,'left',1,3)}</w:tr>`;
+  return x+'</w:tbl>';
+}
+async function generateDocx(){
+  const name=$('projectName').value.trim()\vert{}\vert{}'消防查验图片资料', date=$('projectDate').value||'';
+  const entries=[]; const rels=[]; let rid=1;
+  const logo=document.querySelector('.cover-logo')?.src;
+  let docBody='';
+  if(logo){const ext=imageExt(logo),bytes=dataUrlToUint8Array(logo),id='rId'+(rels.length+1);rels.push({id,ext,bytes});docBody+=`<w:p><w:pPr><w:jc w:val="left"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline><wp:extent cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/><wp:docPr id="10" name="logo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="10" name="logo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+  docBody+=xmlPara(name,'center',52,true,1440*2,0);
+  docBody+=xmlPara('消防查验阶段图片资料','center',48,false,1440*2,0);
+  // 段前边距减少 567 dxa (即 1 cm)，以同步在 Word 中实现公司名称上移 1cm
+  docBody+='<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="7633" w:after="0"/></w:pPr>'+xmlTextRun('江苏安仕达消防技术有限公司',28)+'</w:p>';
+  docBody+=xmlPara(formatDate(date),'center',28,false,240,0);
+  docBody+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+  for(let i=0;i<items.length;i+=2){
+    if(i>0)docBody+='<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+    docBody+=await tableXml(items[i],rels);
+    if(items[i+1]){
+      docBody+=`<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="850" w:lineRule="exact"/><w:rPr><w:sz w:val="1"/><w:szCs w:val="1"/></w:rPr></w:pPr></w:p>`;
+      docBody+=await tableXml(items[i+1],rels);
+    }
+  }
+  const relEntries=rels.map(r=>`<Relationship Id="${r.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${rels.indexOf(r)+1}.${r.ext}"/>`).join('');
+  const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>${docBody}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="0" w:right="425" w:bottom="0" w:left="425" w:header="0" w:footer="0" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+  const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="SimSun" w:eastAsia="宋体"/><w:lang w:val="zh-CN"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0"/></w:pPr></w:pPrDefault></w:docDefaults></w:styles>`;
+  const settings=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:zoom w:percent="100"/></w:settings>`;
+  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Default Extension="jpeg" ContentType="image/jpeg"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml"/></Types>`;
+  const rootRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  const wordRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/><Relationship Id="rIdSettings" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>${relEntries}</Relationships>`;
+  entries.push({name:'[Content_Types].xml',data:contentTypes},{name:'_rels/.rels',data:rootRels},{name:'word/document.xml',data:documentXml},{name:'word/styles.xml',data:styles},{name:'word/settings.xml',data:settings},{name:'word/_rels/document.xml.rels',data:wordRels});
+  rels.forEach((r,i)=>entries.push({name:`word/media/image${i+1}.${r.ext}`,data:r.bytes}));
+  const blob=makeZip(entries); const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${name}_图片数据.docx`;a.type='application/vnd.openxmlformats-officedocument.wordprocessingml.document';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function generatePdf(){
+  const oldTitle=document.title;document.title=( $('projectName').value.trim()||'消防查验图片资料')+'_图片数据';
+  alert('即将打开打印窗口。请选择“另存为 PDF”即可生成 PDF 文件。');
+  window.print();
+  document.title=oldTitle;
+}
+function backToEdit(){$("preview").classList.add("hidden");$("editor").classList.remove("hidden");window.scrollTo(0,0)}
+function esc(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
+init();
+</script>
+</body>
+</html>
