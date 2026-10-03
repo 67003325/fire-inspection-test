@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>消防查验图片资料</title>
+<title>消防查验图片资料 v15</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei",Arial,sans-serif;background:#f4f6f8;color:#1f2937}
 header{background:#1677ff;color:#fff;padding:18px 22px;font-size:20px;font-weight:700}
@@ -24,7 +24,7 @@ button{border:0;border-radius:9px;padding:12px 18px;font-size:15px;font-weight:6
 .hidden{display:none!important}
 .preview-page{background:#fff;max-width:900px;margin:20px auto;padding:45px;box-shadow:0 2px 15px #0002}
 .cover{width:210mm;height:297mm;min-height:297mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(2em)}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(2em)}.cover-bottom{margin-top:auto;text-align:center;padding-top:20px;transform:translateY(calc(-2em - 10mm))}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:20px;font-size:14pt;font-weight:400}
+.cover{position:relative;font-family:"SimSun","宋体",serif}.cover-logo{position:absolute;top:5mm;left:5mm;width:2.02cm;height:1.58cm;object-fit:contain;display:block}.cover .project{font-size:26pt;font-weight:700;margin-bottom:55px;transform:translateY(calc(2em + 15mm))}.cover .title{font-size:24pt;font-weight:400;margin-bottom:100px;transform:translateY(calc(2em + 15mm))}.cover-bottom{margin-top:auto;text-align:center;padding-top:20px;transform:translateY(calc(-2em - 15mm))}.cover .company{font-size:14pt;font-weight:400}.cover .date{margin-top:20px;font-size:14pt;font-weight:400}
 .table-page{width:210mm;height:297mm;min-height:297mm;background:#fff;margin:20px auto;padding:0;box-sizing:border-box;page-break-after:always;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.table-page:last-child{page-break-after:auto}.word-table{width:19cm;height:138.5mm;border-collapse:collapse;margin:0;table-layout:fixed;font-family:"SimSun","宋体",serif;font-size:10.5pt;flex:0 0 138.5mm}.word-table tr:nth-child(1){height:10mm!important}.word-table tr:nth-child(2){height:10mm!important}.word-table tr:nth-child(3){height:98.5mm!important}.word-table tr:nth-child(4){height:10mm!important}.word-table tr:nth-child(5){height:10mm!important}.word-table td{border:1px solid #333;padding:2px 4px;vertical-align:middle;font-family:"SimSun","宋体",serif;font-size:10.5pt;line-height:1.05;overflow:hidden}.label{font-weight:400;background:#fff;width:23.3%;text-align:center;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-block{padding:0!important;vertical-align:middle!important}.photo-title{height:10mm;line-height:10mm;font-weight:400;text-align:center;padding:0 4px;background:#fff;font-family:"SimSun","宋体",serif;font-size:10.5pt;overflow:hidden}.photo-cell{height:98.5mm!important;max-height:98.5mm!important;text-align:center;padding:2px;overflow:hidden;font-family:"SimSun","宋体",serif;font-size:10.5pt}.photo-cell img{display:block;margin:0 auto;max-width:100%;max-height:96mm;width:auto;height:auto;object-fit:contain}.word-table .value-cell{text-align:left}.export-area{background:#fff}.small{font-size:13px;color:#6b7280}@media(max-width:700px){.photo-grid{grid-template-columns:1fr}.preview-page{padding:20px}.cover{min-height:600px}.cover .project{font-size:27px}}@media print{body{background:#fff}.no-print{display:none!important}.preview-page{box-shadow:none;margin:0;max-width:none}.table-page{margin:0;width:210mm;height:297mm;min-height:297mm;padding:0;break-after:page;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:15mm;padding-top:2.5mm}.word-table{break-inside:avoid;width:19cm;height:138.5mm;margin:0;flex:0 0 138.5mm}.photo-cell{height:98.5mm!important;max-height:98.5mm!important}.photo-cell img{max-height:96mm!important}}</style>
 
 </head>
@@ -175,16 +175,33 @@ function concatBytes(parts){let total=0;for(const p of parts)total+=p.length;con
 function utf8(s){return new TextEncoder().encode(s)}
 function makeZip(entries){
   const local=[], central=[]; let offset=0;
-  for(const e of entries){const name=utf8(e.name), data=e.data instanceof Uint8Array?e.data:utf8(e.data);const crc=crc32(data);
-    const lh=concatBytes([u32(0x04034b50),u16(20),u16(0x800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data]);local.push(lh);
-    const ch=concatBytes([u32(0x02014b50),u16(20),u16(20),u16(0x800),u16(0),u16(0),u32(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);central.push(ch);offset+=lh.length;
+  for(const e of entries){
+    const name=utf8(e.name);
+    const data=e.data instanceof Uint8Array?e.data:utf8(e.data);
+    const crc=crc32(data);
+    const lh=concatBytes([
+      u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(0),u16(0),
+      u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data
+    ]);
+    local.push(lh);
+    const ch=concatBytes([
+      u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0),
+      u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),
+      u16(0),u16(0),u32(0),u32(offset),name
+    ]);
+    central.push(ch);
+    offset += lh.length;
   }
-  const cd=concatBytes(central), body=concatBytes(local);const end=concatBytes([u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),u32(cd.length),u32(body.length),u16(0)]);
+  const body=concatBytes(local), cd=concatBytes(central);
+  const end=concatBytes([
+    u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),
+    u32(cd.length),u32(body.length),u16(0)
+  ]);
   return new Blob([body,cd,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
 }
 function xmlTextRun(text,size=21,bold=false){return `<w:r><w:rPr><w:rFonts w:ascii="SimSun" w:eastAsia="宋体"/><w:sz w:val="${size}"/>${bold?'<w:b/>':''}</w:rPr><w:t xml:space="preserve">${escXml(text||'')}</w:t></w:r>`}
 function xmlPara(text='',align='left',size=21,bold=false,spaceBefore=0,spaceAfter=0){return `<w:p><w:pPr><w:jc w:val="${align}"/><w:spacing w:before="${spaceBefore}" w:after="${spaceAfter}" w:line="240" w:lineRule="auto"/></w:pPr>${xmlTextRun(text,size,bold)}</w:p>`}
-function xmlImageRun(relId,cx,cy){return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="1" name="photo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="0" name="photo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+let DRAWING_ID=20; function xmlImageRun(relId,cx,cy){const did=DRAWING_ID++;return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:docPr id="${did}" name="photo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="0" name="photo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${relId}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
 function tc(text,w,align='center',rowSpan=1,colSpan=1,extra=''){return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${colSpan>1?`<w:gridSpan w:val="${colSpan}"/>`:''}<w:vAlign w:val="center"/>${extra}</w:tcPr>${xmlPara(text,align,21,false,0,0)}</w:tc>`}
 function imageTc(title,data,w,relId,cx,cy){let body=xmlPara(title,'center',21,false,0,0);if(data)body+=xmlImageRun(relId,cx,cy);return `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${body}</w:tc>`}
 async function getImageFit(dataUrl,maxWmm,maxHmm){
@@ -200,11 +217,27 @@ async function getImageFit(dataUrl,maxWmm,maxHmm){
     im.src=dataUrl;
   });
 }
+
+async function normalizeImageJpeg(dataUrl){
+  return new Promise((resolve,reject)=>{
+    if(!dataUrl){resolve(dataUrl);return;}
+    const im=new Image();
+    im.onload=()=>{
+      const c=document.createElement('canvas');
+      c.width=im.naturalWidth||im.width||1; c.height=im.naturalHeight||im.height||1;
+      const ctx=c.getContext('2d'); ctx.drawImage(im,0,0,c.width,c.height);
+      resolve(c.toDataURL('image/jpeg',0.92));
+    };
+    im.onerror=()=>reject(new Error('图片无法读取，请使用 JPG/PNG 图片'));
+    im.src=dataUrl;
+  });
+}
+
 async function tableXml(it,rels){
   const tableW=cmToTwips(19), labelW=Math.round(tableW*0.233), rest=tableW-labelW, half=Math.round(tableW/2), each=Math.round(rest/3);
   const rows=[cmToTwips(1),cmToTwips(1),cmToTwips(9.85),cmToTwips(1),cmToTwips(1)];
-  const addImg=(data)=>{if(!data)return null;const id='rIdImg'+(rels.length+1), ext=imageExt(data), bytes=dataUrlToUint8Array(data);rels.push({id,ext,bytes});return {id,ext,bytes}}
-  const a=addImg(it.image), b=addImg(it.data);
+  const addImg=async(data)=>{if(!data)return null;const id='rIdImg'+(rels.length+1);const normalized=await normalizeImageJpeg(data);const bytes=dataUrlToUint8Array(normalized);rels.push({id,ext:'jpg',bytes});return {id,ext:'jpg',bytes}}
+  const a=await addImg(it.image), b=await addImg(it.data);
   const da=await getImageFit(it.image,9.25,9.55), db=await getImageFit(it.data,9.25,9.55);
   function imageTc(data,rel,dim){
     let body='';
@@ -224,7 +257,7 @@ async function generateDocx(){
   const entries=[]; const rels=[]; let rid=1;
   const logo=document.querySelector('.cover-logo')?.src;
   let docBody='';
-  if(logo){const ext=imageExt(logo),bytes=dataUrlToUint8Array(logo),id='rId'+(rels.length+1);rels.push({id,ext,bytes});docBody+=`<w:p><w:pPr><w:jc w:val="left"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline><wp:extent cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/><wp:docPr id="10" name="logo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="10" name="logo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
+  if(logo){const normalizedLogo=await normalizeImageJpeg(logo);const ext='jpg',bytes=dataUrlToUint8Array(normalizedLogo),id='rId'+(rels.length+1);rels.push({id,ext,bytes});docBody+=`<w:p><w:pPr><w:jc w:val="left"/><w:spacing w:before="0" w:after="0"/></w:pPr><w:r><w:drawing><wp:inline><wp:extent cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/><wp:docPr id="10" name="logo"/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic><pic:nvPicPr><pic:cNvPr id="10" name="logo"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${mmToEmu(20.2)}" cy="${mmToEmu(15.8)}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></w:drawing></w:r></w:p>`}
   docBody+=xmlPara(name,'center',52,true,1440*2,0);
   docBody+=xmlPara('消防查验阶段图片资料','center',48,false,1440*2,0);
   docBody+='<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="7633" w:after="0"/></w:pPr>'+xmlTextRun('江苏安仕达消防技术有限公司',28)+'</w:p>';
